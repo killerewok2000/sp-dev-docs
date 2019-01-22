@@ -295,6 +295,15 @@ The import pipeline is using Azure Blob Storage security model as is. This means
 
 The import pipeline allows event handlers to be referenced on list items, but doesn’t allow defining event handlers at the list level at this time. The import pipeline does not fire events as items are imported, so existing event handlers will not fire due to the import event. 
 
+### Document Set import
+
+The “Document Set” content type must be added to the target library prior to the migration – Document sets have some forms (such as DocumentSetHomePage.aspx) associated with them which are used for viewing them. The Migration API does migrate the “Document Set” content type, however it is does not migrate these forms. Hence, if the “Document Set” content type is not added to the target library as a pre-migration step, you will hit the 404 error when opening the document set after migration.
+ 
+The manifest should have the 2 value attributes set appropriately for the fields “HTML File Type” and “DocumentSetDescription” for the Document Set item. This is the same information that was mentioned earlier in the thread.
+<Field Name="HTML_x0020_File_x0020_Type" Value="Sharepoint.DocumentSet" FieldId="..." />
+<Field Name="DocumentSetDescription" Value="My doc set" FieldId="..." />
+
+
 ## Appendices
 
 ### Acronyms Defined
